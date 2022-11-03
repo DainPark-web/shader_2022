@@ -12,9 +12,10 @@ void main() {
 
 
    vec3 coord;
-   float l = length(mod(st, 1.) -0.1);
-   coord = vec3(l);
+   st.x = st.x * 3. + st.x/3. * sin(st.x * 1.) * 2.;
+   float l = length(mod(st, .5) - 0.25);
+   coord = vec3(pow(l * 4., 2.));
 
 
-    gl_FragColor = vec4(coord,1.0);
+    gl_FragColor = vec4(0.01/coord,1.0);
 }
