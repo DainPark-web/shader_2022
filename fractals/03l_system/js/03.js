@@ -7,22 +7,19 @@ let HEIGHT = canvasContainer.clientHeight;
 
 let iterations = 10000;
 let points = [];
-let colorList = []
 let radius = 4;
 
 function setup(){
     const cnv = createCanvas(WIDTH,HEIGHT);
     cnv.parent(canvasContainer)
-    colorMode(HSB)
+
     points[0] = createVector(0,0);
     for(let i = 0; i < iterations; i++){
         points.push(transform(points[i], i));
-        colorList.push([random(100), random(250), random(255)]);
         
     }
     noLoop()
-    console.log(colorList)
-    noStroke();
+    // noStroke();
 }
 
 function draw(){
@@ -30,20 +27,9 @@ function draw(){
     fill(255)  
     translate(300,0)
     // rotate(PI * 0.1)
-  
     for(let p in points){
         let a = points[p];
-        // error handling
-        if(colorList[p] !== undefined){
-            fill(...colorList[p])
-        }
-        circle(a.x * 80, a.y * 80 , radius)
-
-        push()
-            translate(200,0)
-            rotate(-PI * 0.2)
-            circle(a.x * 80, a.y * 80 , radius)
-        pop()
+        circle(a.x * 50, a.y * 50 , radius)
     }
 }
 
@@ -71,21 +57,21 @@ function transform(point, i){
     return createVector(x, y);
 }
 
-// function transformL(point, i){
-//     let x = point.x * 0.5;
-//     let y = point.y * 0.5;
-//     return createVector(x, y);
-// }
-// function transformT(point, i){
-//     let x = point.x * 0.5 + 0.5;
-//     let y = point.y * 0.5 + 0.5;
-//     return createVector(x, y);
-// }
-// function transformR(point, i){
-//     let x = point.x * 0.5 + 1;
-//     let y = point.y * 0.5;
-//     return createVector(x, y);
-// }
+function transformL(point, i){
+    let x = point.x * 0.5;
+    let y = point.y * 0.5;
+    return createVector(x, y);
+}
+function transformT(point, i){
+    let x = point.x * 0.5 + 0.5;
+    let y = point.y * 0.5 + 0.5;
+    return createVector(x, y);
+}
+function transformR(point, i){
+    let x = point.x * 0.5 + 1;
+    let y = point.y * 0.5;
+    return createVector(x, y);
+}
 
 function windowResized() {
     WIDTH = canvasContainer.clientWidth;
