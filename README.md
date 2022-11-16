@@ -4,7 +4,7 @@
 # Index
 
 ## IFS(interated function system)
-### Sierpinski triangle
+### Sierpinski triangle , Barnsley fern explained
 ### L-Systems
 
 

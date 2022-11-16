@@ -4,9 +4,9 @@ let HEIGHT = canvasContainer.clientHeight;
 
 // IFS
 
-let iterations = 100000;
+let iterations = 4000;
 let points = [];
-let radius = 4;
+let radius = 5;
 
 function setup(){
     const cnv = createCanvas(WIDTH,HEIGHT);
@@ -14,8 +14,17 @@ function setup(){
 
     points[0] = createVector(0,0);
     for(let i = 0; i < iterations; i++){
-        points.push(transform(points[i], i));
-        
+        let coin = random(1.0);
+        if(coin < 0.33){
+            points.push(transformL(points[i], i));
+
+        }else if(coin < 0.66 && coin >= 0.33){
+
+            points.push(transformR(points[i], i));
+        }else {
+            
+            points.push(transformT(points[i], i));
+        }
     }
     noLoop()
     // noStroke();
@@ -23,37 +32,12 @@ function setup(){
 
 function draw(){
     background(0);
-    fill(255)  
-    translate(300,0)
-    // rotate(PI * 0.1)
+
+    fill(255)
     for(let p in points){
         let a = points[p];
-        circle(a.x * 50, a.y * 50 , radius)
+        circle(a.x * 700, a.y * 700, radius)
     }
-}
-
-function transform(point, i){
-    let p = random(1.0);
-    let x;
-    let y;
-    if(p === 1.0){
-        x = 0.0;
-        y = 0.16 * point.y;
-    }
-    if(p >= 0.2 && p < 0.86){
-        x = 0.85 * point.x + 0.04 * point.y;
-        y = -0.04 * point.x + 0.85 * point.y + 1.6;
-    }
-    if(p >= 0.87 && p <= 0.94){
-        x = 0.2 * point.x - 0.26 * point.y;
-        y = 0.23 * point.x + 0.22 * point.y + 1.6;
-    }
-    if(p >= 0.94 && p <= 1.0){
-        x = -0.15 * point.x + 0.28 * point.y;
-        y = 0.26 * point.x + 0.24 * point.y + 0.44;
-    }
-
-    return createVector(x, y);
 }
 
 function transformL(point, i){
