@@ -3,7 +3,7 @@ let WIDTH = canvasContainer.clientWidth;
 let HEIGHT = canvasContainer.clientHeight;
 
 // Barnsley fern 
-// Aufgabe=> Color, Experiment, etc
+// Aufgabe=> Color, Experiment, etc 각각 퐁인트에 sin 값줘서 돌아가게 보이게 
 
 let iterations = 10000;
 let points = [];
